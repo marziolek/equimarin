@@ -28,6 +28,7 @@
 {assign var=color_border_lighter value="#CCCCCC"}
 {assign var=color_line_even value="#FFFFFF"}
 {assign var=color_line_odd value="#F9F9F9"}
+{assign var=color_text_gray value="#666666"}
 {assign var=font_size_text value="9pt"}
 {assign var=font_size_header value="9pt"}
 {assign var=font_size_product value="9pt"}
@@ -164,6 +165,10 @@
 		border: 1px solid black;
 	}
 
+	.border-top {
+		border-top: 1px solid black;
+	}
+
 	.no_top_border {
 		border-top:hidden;
 		border-bottom:1px solid black;
@@ -173,7 +178,11 @@
 
 	.grey {
 		background-color: {$color_header};
+	}
 
+	.grey-text {
+		color: {$color_text_gray};
+		text-transform: uppercase;
 	}
 
 	/* This is used for the border size */
@@ -188,5 +197,14 @@
 	
 	.small, table.small th, table.small td {
 		font-size:small;
+	}
+
+	p {
+		margin: 0;
+		line-height: 1;
+	}
+
+	b {
+		font-weight: bold;
 	}
 </style>

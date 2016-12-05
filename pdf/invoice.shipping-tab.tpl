@@ -22,9 +22,17 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<table id="shipping-tab" width="100%">
+<table class="product" width="100%" cellpadding="4" cellspacing="0">
+	<thead>
+		<tr>
+			<th class="product header small" width="50%">{l s='Shipping Type' pdf='true'}</th>
+			<th class="product header small" width="25%">{l s='Shipping Date' pdf='true'}</th>
+			<th class="product header small" width="25%">{l s='Status' pdf='true'}</th>
+		</tr>
+	</thead>
 	<tr>
-		<td class="shipping center small grey bold" width="44%">{l s='Carrier' pdf='true'}</td>
-		<td class="shipping center small white" width="56%">{$carrier->name}</td>
+		<td width="50%"></td>
+		<td width="25%"></td>
+		<td width="25%"></td>
 	</tr>
 </table>

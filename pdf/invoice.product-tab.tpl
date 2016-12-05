@@ -26,29 +26,23 @@
 
 	<thead>
 	<tr>
-		<th class="product header small" width="{$layout.reference.width}%">{l s='Reference' pdf='true'}</th>
-		<th class="product header small" width="{$layout.product.width}%">{l s='Product' pdf='true'}</th>
-		<th class="product header small" width="{$layout.tax_code.width}%">{l s='Tax Rate' pdf='true'}</th>
-
-		{if isset($layout.before_discount)}
-			<th class="product header small" width="{$layout.unit_price_tax_excl.width}%">{l s='Base price' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
-		{/if}
-
-		<th class="product header-right small" width="{$layout.unit_price_tax_excl.width}%">{l s='Unit Price' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
-		<th class="product header small" width="{$layout.quantity.width}%">{l s='Qty' pdf='true'}</th>
-		<th class="product header-right small" width="{$layout.total_tax_excl.width}%">{l s='Total' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
+		<th class="product header small" width="5%">{l s='Reference' pdf='true'}</th>
+		<th class="product header small" width="50%">{l s='Product' pdf='true'}</th>
+		<th class="product header small" width="7%">{l s='Qty' pdf='true'}</th>
+		<th class="product header-right small" width="18%">{l s='Unit Price' pdf='true'} <br /> {l s='(Tax incl.)' pdf='true'}</th>
+		<th class="product header-right small" width="20%">{l s='Total' pdf='true'} <br /> {l s='(Tax incl.)' pdf='true'}</th>
 	</tr>
 	</thead>
 
 	<tbody>
 
 	<!-- PRODUCTS -->
-	{foreach $order_details as $order_detail}
+	{foreach $order_details as $order_detail name=products}
 		{cycle values=["color_line_even", "color_line_odd"] assign=bgcolor_class}
 		<tr class="product {$bgcolor_class}">
 
 			<td class="product center">
-				{$order_detail.product_reference}
+				{$smarty.foreach.products.index + 1}
 			</td>
 			<td class="product left">
 				{if $display_product_images}
@@ -68,34 +62,18 @@
 				{else}
 					{$order_detail.product_name}
 				{/if}
-
-			</td>
-			<td class="product center">
-				{$order_detail.order_detail_tax_label}
 			</td>
 
-			{if isset($layout.before_discount)}
-				<td class="product center">
-					{if isset($order_detail.unit_price_tax_excl_before_specific_price)}
-						{displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl_before_specific_price}
-					{else}
-						--
-					{/if}
-				</td>
-			{/if}
-
-			<td class="product right">
-				{displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl_including_ecotax}
-				{if $order_detail.ecotax_tax_excl > 0}
-					<br>
-					<small>{{displayPrice currency=$order->id_currency price=$order_detail.ecotax_tax_excl}|string_format:{l s='ecotax: %s' pdf='true'}}</small>
-				{/if}
-			</td>
 			<td class="product center">
 				{$order_detail.product_quantity}
 			</td>
+
+			<td class="product right">
+				{displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_incl}
+			</td>
+
 			<td  class="product right">
-				{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_excl_including_ecotax}
+				{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_incl}
 			</td>
 		</tr>
 
