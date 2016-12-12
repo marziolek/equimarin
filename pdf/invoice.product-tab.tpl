@@ -29,8 +29,8 @@
 		<th class="product header small" width="5%">{l s='Reference' pdf='true'}</th>
 		<th class="product header small" width="50%">{l s='Product' pdf='true'}</th>
 		<th class="product header small" width="7%">{l s='Qty' pdf='true'}</th>
-		<th class="product header-right small" width="18%">{l s='Unit Price' pdf='true'} <br /> {l s='(Tax incl.)' pdf='true'}</th>
-		<th class="product header-right small" width="20%">{l s='Total' pdf='true'} <br /> {l s='(Tax incl.)' pdf='true'}</th>
+		<th class="product header-right small" width="18%">{l s='Unit Price' pdf='true'}</th>
+		<th class="product header-right small" width="20%">{l s='Total' pdf='true'}</th>
 	</tr>
 	</thead>
 
@@ -130,17 +130,17 @@
 	{foreach from=$cart_rules item=cart_rule name="cart_rules_loop"}
 		{if $smarty.foreach.cart_rules_loop.first}
 		<tr class="discount">
-			<th class="header" colspan="{$layout._colCount}">
+			<th class="header" width="100%">
 				{l s='Discounts' pdf='true'}
 			</th>
 		</tr>
 		{/if}
 		<tr class="discount">
-			<td class="white right" colspan="{$layout._colCount - 1}">
+			<td class="white right" width="80%">
 				{$cart_rule.name}
 			</td>
-			<td class="right white">
-				- {displayPrice currency=$order->id_currency price=$cart_rule.value_tax_excl}
+			<td class="right white" width="20%">
+				{displayPrice currency=$order->id_currency price=$cart_rule.value}
 			</td>
 		</tr>
 	{/foreach}
